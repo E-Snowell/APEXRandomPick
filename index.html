@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEXランダムピック</title>
+    <h1>APEXランダムピック</h1>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+
+    <h2>キャラランダムピック
+        <label class="toggle-switch">
+            <input type="checkbox" id="chara-switch" checked>
+            <span class="toggle-slider"></span>
+        </label>
+    </h2>
+
+
+    
+    <div class ="legend-container">
+        <div class="row upper">
+            <div class="class-block">
+                <div id="assault" class="class-group"></div>
+                <div class="class-assault">アサルト</div>
+            </div>
+            <div class="class-block">
+                <div id="skirmisher" class="class-group"></div>
+                <div class="class-skirmisher">スカーミッシャー</div>
+            </div>
+        </div>
+        <div class="row lower">
+            <div class="class-block">
+                <div id="recon" class="class-group"></div>
+                <div class="class-recon">リコン</div>
+            </div>
+            <div class="class-block">
+                <div id="support" class="class-group"></div>
+                <div class="class-support">サポート</div>
+            </div>
+            <div class="class-block">
+                <div id="controller" class="class-group"></div>
+                <div class="class-controller">コントローラー</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>武器ランダムピック
+        <label class="toggle-switch">
+            <input type="checkbox" id="weapon-switch">
+            <span class="toggle-slider"></span>
+        </label>
+    </h2>
+
+    <div class="weapon">
+    <div class="change-mode">
+        <span class="mode-label">武器こだわり設定モードを有効にする</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="advanced-mode-switch">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div id="normal-setting" style="display: block;"><!--通常時表示-->
+
+        <div class="weapon-count-selector">
+            <h3>抽選する武器の数を選択</h3>
+            <input type="radio" id="count-1" name="weapon-count" value="1">
+            <label for="count-1">1丁</label>
+
+            <input type="radio" id="count-2" name="weapon-count" value="2" checked>
+            <label for="count-2">2丁</label>
+
+            <input type="radio" id="count-3" name="weapon-count" value="3">
+            <label for="count-3">3丁 (バリスティック用)</label>
+        </div>
+
+        <div id="weapon-setting">
+            <h3>武器の重複設定</h3>
+            <div class="radio-controls">
+                <label class="radio-label">
+                    <input type="radio" id="another" name="overlap" value="false" checked>
+                    <span class="radio-text">重複させない</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" id="duplication" name="overlap" value="true">
+                    <span class="radio-text">重複させる(※同じ武器が選ばれる可能性があります)</span>
+                </label>
+            </div>
+            ※ケアパケ武器は抽選対象外です。
+            その他細かい設定はこだわり設定モードをご活用ください。
+        </div>
+
+    </div>
+
+
+
+    <div id="advanced-setting" style="display: none;"><!--こだわりモードがオンの時に表示するもの-->
+        <div class ="weapon-container">
+            <div class="background">
+
+                <h3 class="master-control">【全武器一括設定】</h3>
+
+                <div class="master-button category-control">
+                    <div class="button-pair">
+                        <button class="mainB" data-type="all" data-scope="main" data-action="on">全メインON</button>
+                        <button class="mainB" data-type="all" data-scope="main" data-action="off">全メインOFF</button>
+                    </div>
+                    <div class="button-pair">
+                        <button class="subB" data-type="all" data-scope="sub" data-action="on">全サブON</button>
+                        <button class="subB" data-type="all" data-scope="sub" data-action="off">全サブOFF</button>
+                    </div>
+                    <div class="button-pair">
+                        <button class="slingB" data-type="all" data-scope="sling" data-action="on">全スリングON</button>
+                        <button class="slingB" data-type="all" data-scope="sling" data-action="off">全スリングOFF</button>
+                    </div>
+                </div>
+            
+
+                <h3>【武器種選択】</h3>
+
+                <div class="weapon-tab">
+                    <div class="button-pair">
+                        <button class="tab-btn active" id="ARB">アサルトライフル</button>
+                        <button class="tab-btn">サブマシンガン</button>
+                    </div>
+                    <div class="button-pair">
+                        <button class="tab-btn">ライトマシンガン</button>
+                        <button class="tab-btn">スナイパーライフル</button>
+                    </div>
+                    <div class="button-pair">
+                        <button class="tab-btn">ショットガン</button>
+                        <button class="tab-btn">マークスマン</button>
+                    </div>
+                    <div class="button-pair">
+                        <button class="tab-btn">ピストル</button>
+                        <button class="tab-btn">ケアパケ武器</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weapon-content-group">
+                <div class="content active"><!--ARタブ-->
+                    
+                    <h3 class="weapon-header">【アサルトライフル一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="AR" data-scope="main" data-action="on">ARメインON</button>
+                            <button class="bulk-main mainB" data-type="AR" data-scope="main" data-action="off">ARメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="AR" data-scope="sub" data-action="on">ARサブON</button>
+                            <button class="bulk-sub subB" data-type="AR" data-scope="sub" data-action="off">ARサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="AR" data-scope="sling" data-action="on">ARスリングON</button>
+                            <button class="bulk-sling slingB" data-type="AR" data-scope="sling" data-action="off">ARスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-AR" class="weapon-list"></div>
+                    </div>
+                </div>
+
+                <div class="content"><!--SMGタブ-->
+
+                    <h3 class="weapon-header">【サブマシンガン一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="SMG" data-scope="main" data-action="on">SMGメインON</button>
+                            <button class="bulk-main mainB" data-type="SMG" data-scope="main" data-action="off">SMGメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="SMG" data-scope="sub" data-action="on">SMGサブON</button>
+                            <button class="bulk-sub subB" data-type="SMG" data-scope="sub" data-action="off">SMGサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="SMG" data-scope="sling" data-action="on">SMGスリングON</button>
+                            <button class="bulk-sling slingB" data-type="SMG" data-scope="sling" data-action="off">SMGスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-SMG" class="weapon-list"></div>
+                    </div>
+                </div>
+                
+                <div class="content"><!--LMGタブ-->
+
+                    <h3 class="weapon-header">【ライトマシンガン一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="LMG" data-scope="main" data-action="on">LMGメインON</button>
+                            <button class="bulk-main mainB" data-type="LMG" data-scope="main" data-action="off">LMGメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="LMG" data-scope="sub" data-action="on">LMGサブON</button>
+                            <button class="bulk-sub subB" data-type="LMG" data-scope="sub" data-action="off">LMGサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="LMG" data-scope="sling" data-action="on">LMGスリングON</button>
+                            <button class="bulk-sling slingB" data-type="LMG" data-scope="sling" data-action="off">LMGスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-LMG" class="weapon-list"></div>
+                    </div>
+                </div>
+                <div class="content"><!--SRタブ-->
+
+                    <h3 class="weapon-header">【スナイパーライフル一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="SR" data-scope="main" data-action="on">SRメインON</button>
+                            <button class="bulk-main mainB" data-type="SR"  data-scope="main" data-action="off">SRメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="SR" data-scope="sub" data-action="on">SRサブON</button>
+                            <button class="bulk-sub subB" data-type="SR" data-scope="sub" data-action="off">SRサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="SR" data-scope="sling" data-action="on">SRスリングON</button>
+                            <button class="bulk-sling slingB" data-type="SR" data-scope="sling" data-action="off">SRスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-SR" class="weapon-list"></div>
+                    </div>
+                </div>
+
+                <div class="content"><!--SGタブ-->
+
+                    <h3 class="weapon-header">【ショットガン一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="SG" data-scope="main" data-action="on">SGメインON</button>
+                            <button class="bulk-main mainB" data-type="SG" data-scope="main" data-action="off">SGメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="SG" data-scope="sub" data-action="on">SGサブON</button>
+                            <button class="bulk-sub subB" data-type="SG" data-scope="sub" data-action="off">SGサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="SG" data-scope="sling" data-action="on">SGスリングON</button>
+                            <button class="bulk-sling slingB" data-type="SG" data-scope="sling" data-action="off">SGスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-SG" class="weapon-list"></div>
+                    </div>
+                </div>
+
+                <div class="content"><!--marksmanタブ-->
+
+                    <h3 class="weapon-header">【マークスマン一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="marksman" data-scope="main" data-action="on">マークスマンメインON</button>
+                            <button class="bulk-main mainB" data-type="marksman" data-scope="main" data-action="off">マークスマンメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="marksman" data-scope="sub" data-action="on">マークスマンサブON</button>
+                            <button class="bulk-sub subB" data-type="marksman" data-scope="sub" data-action="off">マークスマンサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="marksman" data-scope="sling" data-action="on">マークスマンスリングON</button>
+                            <button class="bulk-sling slingB" data-type="marksman" data-scope="sling" data-action="off">マークスマンスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-marksman" class="weapon-list"></div>
+                    </div>
+                </div>
+
+                <div class="content"><!--pistolタブ-->
+
+                    <h3 class="weapon-header">【ピストル一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="pistol" data-scope="main" data-action="on">ピストルメインON</button>
+                            <button class="bulk-main mainB" data-type="pistol" data-scope="main" data-action="off">ピストルメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="pistol" data-scope="sub" data-action="on">ピストルサブON</button>
+                            <button class="bulk-sub subB" data-type="pistol" data-scope="sub" data-action="off">ピストルサブOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sling slingB" data-type="pistol" data-scope="sling" data-action="on">ピストルスリングON</button>
+                            <button class="bulk-sling slingB" data-type="pistol" data-scope="sling" data-action="off">ピストルスリングOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-pistol" class="weapon-list"></div>
+                    </div>
+                </div>
+
+                <div class="content"><!--care packageタブ-->
+
+                    <h3 class="weapon-header">【ケアパケ一括設定】</h3>
+
+                    <div class="category-control">
+                        <div class="button-pair">
+                            <button class="bulk-main mainB" data-type="CP" data-scope="main" data-action="on">ケアパケメインON</button>
+                            <button class="bulk-main mainB" data-type="CP" data-scope="main" data-action="off">ケアパケメインOFF</button>
+                        </div>
+                        <div class="button-pair">
+                            <button class="bulk-sub subB" data-type="CP" data-scope="sub" data-action="on">ケアパケサブON</button>
+                            <button class="bulk-sub subB" data-type="CP" data-scope="sub" data-action="off">ケアパケサブOFF</button>
+                        </div>
+                    </div>
+
+                    <div class="set-container">
+                        <div id="weapon-container-CP" class="weapon-list"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <button id="start">抽選開始！</button>
+
+    <div id="result-screen" class="hidden">
+        <div class="result-content">
+            <h2 class="result-header">🔥 抽選結果 🔥</h2>
+        
+            <div id="chara-result-img-box">
+                <img id="chara-result-img" src="" alt="キャラクター画像" style="max-width: 250px; display: none;">
+            </div>
+
+            <p id="chara-result-text"></p>
+            <p id="main-result-text"></p>
+            <p id="sub-result-text"></p>
+            <p id="sling-result-text"></p>
+            <button id="close-result">閉じる</button>
+        </div>
+    </div>
+
+
+    <script type="module" src ="app.js"></script>
+    <script type="module" src ="data.js"></script>
+
+    <footer>
+        <div class="footer-floor">
+            <p class="footer-text">本ページに使用している画像は、Electronic Arts Inc. が権利を所有する『Apex Legends』のファンコンテンツ・ポリシーに基づいて、同社の著作物を引用・利用しています。</p>
+            <p class="footer-text">画像の著作権その他の知的財産権は、Electronic Arts Inc. またはそのライセンサーに帰属します。</p>
+            <p class="footer-text">© 2026 Electronic Arts Inc.</p>
+            <p class="footer-text">※画像の転載・配布は禁止されています。</p>
+        </div>
+
+    </footer>
+</body>
+</html>
