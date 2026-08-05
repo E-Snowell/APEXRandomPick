@@ -251,7 +251,6 @@ startButton.addEventListener("click", () => {
 
         if (charaImg) {
             if (finalChara && finalChara.imgLink) {
-                // finalChara.image だったところを finalChara.imgLink に変更！
                 charaImg.src = finalChara.imgLink;  
                 charaImg.style.display = "block"; 
             } else {
